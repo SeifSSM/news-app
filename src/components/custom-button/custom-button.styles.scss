@@ -1,0 +1,26 @@
+// .cutom-button{
+//     text-shadow: 0px 1px 0px #666666;
+//     color: #ffffff;
+//     font-size: 20px;
+//     background: #17141d;
+//     text-decoration: none;
+// }
+
+.custom-button {
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  padding: 14px 40px;
+  font-size: medium;
+  border: 2px solid #2ecc71;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+
+  &:hover {
+    background: #2ecc71;
+  }
+}
