@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import CardList from "../../components/card-list/card-list-component";
 
-function Homepage() {
+function Homepage({ country, category }) {
   const [news, setNews] = useState([]);
-  const [country, setCountry] = useState("us");
   useEffect(() => {
     const getArticles = async () => {
       const response = await fetch(
         "https://newsapi.org/v2/top-headlines?" +
-          `country=${country}&` +
+          `country=${country ? country : "eg"}&` +
+          `categroy=${category ? category : "general"}&` +
           "apiKey=86c67467a1b04994a9348d33718410ea"
       );
       const data = await response.json();
@@ -19,8 +19,7 @@ function Homepage() {
   }, []);
   return (
     <div className="home-page">
-        
-      <CardList articles={news}/>
+      <CardList articles={news} />
     </div>
   );
 }

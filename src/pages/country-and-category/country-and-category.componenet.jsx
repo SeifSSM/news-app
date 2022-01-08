@@ -1,18 +1,17 @@
-import React, { useState,useEffect } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./country-and-category.styles.scss";
 import COUNTRIES_DATA from "./countries.data";
 import CATEGORIES_DATA from "./category.data";
 
-function CountryAndCategory() {
-  const [country, setCountry] = useState("us");
-  const [category, setCategory] = useState("general");
+function CountryAndCategory({ onCategoryChange, onCountryChange }) {
   const [countrydata, setData] = useState(COUNTRIES_DATA);
   const [categorydata, setCategoryData] = useState(CATEGORIES_DATA);
-
+  const navigate = useNavigate();
 
   function handleSubmit(event) {
     event.preventDefault();
-    alert(`your options are ${country}+ ${category}`);
+    navigate("/news");
   }
   return (
     <div className="country-and-category">
@@ -22,7 +21,7 @@ function CountryAndCategory() {
         <div className="inputs">
           <div className="form-inputs">
             <select
-              onChange={(event) => setCountry(event.target.value)}
+              onChange={(event) => onCountryChange(event)}
               name="countries"
               className="country"
             >
@@ -41,8 +40,7 @@ function CountryAndCategory() {
             <select
               name="categories"
               className="category"
-              defaultValue="general"
-              onChange={(event) => setCategory(event.target.value)}
+              onChange={(event) => onCategoryChange(event)}
             >
               {categorydata.map((option) => {
                 return (
