@@ -1,0 +1,45 @@
+.welcomepage {
+  height: 100%;
+  .image {
+    background-image: url("../../assets/image.png");
+    filter: blur(3px);
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 3px solid #ffffff;
+    border-radius: 0.125em;
+    padding: 20px;
+    transform: translate(-50%, -50%);
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/opacity/see-through */
+    .title {
+      background-color: transparent;
+      color: white;
+    }
+    .footer {
+      display: flex;
+      justify-content: space-evenly;
+      background-color: transparent;
+    }
+    a {
+      background-color: transparent;
+    }
+    .arrow {
+      border: solid black;
+      border-width: 0 3px 3px 0;
+      display: inline-block;
+      padding: 10px;
+      transform: rotate(-45deg);
+      background-color: transparent;       
+    }
+  }
+}

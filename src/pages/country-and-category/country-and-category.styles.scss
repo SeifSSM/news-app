@@ -3,10 +3,11 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    height: 100vh;
+    height: 80vh;
 
     .title{
         color: #2c3d55;
+        font-weight: bolder;
     }
 
     & form{
