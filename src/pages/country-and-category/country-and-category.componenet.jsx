@@ -4,6 +4,7 @@ import "./country-and-category.styles.scss";
 import COUNTRIES_DATA from "./countries.data";
 import CATEGORIES_DATA from "./category.data";
 import { motion } from "framer-motion";
+import CustomOption from "../../components/customoption/customoption.componenet";
 
 function CountryAndCategory({ onCategoryChange, onCountryChange }) {
   const [countrydata, setData] = useState(COUNTRIES_DATA);
@@ -33,16 +34,16 @@ function CountryAndCategory({ onCategoryChange, onCountryChange }) {
                 className="country"
                 required
               >
-                  <option value="" disabled selected>Choose Your Country</option>
+                <option value="" disabled selected>
+                  Choose Your Country
+                </option>
                 {countrydata.map((option) => {
                   return (
-                    <option
+                    <CustomOption
                       key={option.id}
-                      className="option"
                       value={option.value}
-                    >
-                      {option.displayName.toUpperCase()}
-                    </option>
+                      displayName={option.displayName}
+                    />
                   );
                 })}
               </select>
@@ -52,16 +53,16 @@ function CountryAndCategory({ onCategoryChange, onCountryChange }) {
                 onChange={(event) => onCategoryChange(event)}
                 required
               >
-                 <option value="" disabled selected>Choose Your Category</option>
+                <option value="" disabled selected>
+                  Choose Your Category
+                </option>
                 {categorydata.map((option) => {
                   return (
-                    <option
+                    <CustomOption
                       key={option.id}
-                      className="option"
                       value={option.category}
-                    >
-                      {option.category.toUpperCase()}
-                    </option>
+                      displayName={option.category}
+                    />
                   );
                 })}
               </select>
