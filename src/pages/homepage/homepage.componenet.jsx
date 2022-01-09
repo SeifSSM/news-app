@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import CardList from "../../components/card-list/card-list-component";
-import {motion} from "framer-motion";
-import './homepage.styles.scss';
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import "./homepage.styles.scss";
 
 function Homepage({ country, category }) {
   const [news, setNews] = useState([]);
-  const[isReady,setIsReady]=useState(false);
+  const [isNewsReady, setIsNewsReady] = useState(false);
   useEffect(() => {
     const getArticles = async () => {
       const response = await fetch(
@@ -14,21 +15,40 @@ function Homepage({ country, category }) {
           `categroy=${category}&` +
           "apiKey=cb29209614cd43d7bf6e6d2d72585211"
       );
-      const data = await response.json();
+      try {
+        const data = await response.json();
         setNews(data.articles);
-        setIsReady(true);
+        setIsNewsReady(true);
+      } catch (err) {
+        setIsNewsReady(false);
+      }
     };
 
     getArticles();
-    
   }, []);
-  return (
-    <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} transition={{duration:0.6}}>
+  return news ? (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.6 }}
+    >
       <div className="homepage">
-      <CardList articles={news} isReady={isReady} />
-    </div>
+        <CardList articles={news} isNewsReady={isNewsReady} />
+      </div>
     </motion.div>
-    
+  ) : (
+    <div className="choose-again">
+      <h2 className="title">Please Re-Pick your Options</h2>
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        exit={{ scaleX: 0 }}
+        transition={{ duration: 1 }}
+      >
+        <Link to="/country-and-category">RePick </Link>
+      </motion.div>
+    </div>
   );
 }
 
